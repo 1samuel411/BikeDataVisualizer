@@ -5,33 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BikeDataVisualizer.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace BikeDataVisualizer.Controllers
 {
     public class HomeController : Controller
     {
+        public readonly IConfiguration configuration;
+
+        public HomeController(IConfiguration config)
+        {
+            configuration = config;
+        }
+
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            DataVisualizationModel model = DataController.GetData();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

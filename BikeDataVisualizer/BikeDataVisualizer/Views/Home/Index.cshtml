@@ -1,94 +1,224 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model DataVisualizationModel
+@{
+    ViewData["Title"] = "Data Visualization";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+<div class="split left">
+    <!-- Metric Box (1) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Average Bike Ride Duration Based on Month </p>
         </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+        <div class="metric-box-body">
+            <div id="avgDurationMonth" style="height: 250px;"></div>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+
+    <!-- Metric Box (3) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Passholder Activity </p>
+        </div>
+        <div class="metric-box-body">
+            <div id="passholderActivity" style="height: 250px;"></div>
+        </div>
+    </div>
+
+    <!-- Metric Box (4) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Profit From Overages Based on Passholder </p>
+        </div>
+        <div class="metric-box-body">
+            <p style="margin-left:10px;margin-right:10px;"><i>Based on $1.75 overages for all passes except Walk-Ups which are $3.50 in overages. Excludes Staff Annual Passes</i></p>
+            <div id="passholderProfit" style="height: 250px;"></div>
+        </div>
+    </div>
+
+    <!-- Metric Box (5) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Top 5 Start/Stop Stations with Most Activity </p>
+        </div>
+        <div class="metric-box-body">
+            <div id="startStationTraffic" style="height: 250px;"></div>
+            <div id="endStationTraffic" style="height: 250px;"></div>
+        </div>
+    </div>
+
+    <!-- Metric Box (6) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Average Distance Traveled </p>
+        </div>
+        <div class="metric-box-body">
+            <div class="metric-box-percentage">@Html.Raw(Model.averageDistTraveled.ToString() + " (meters)")</div>
+        </div>
+    </div>
+
+    <!-- Metric Box (7) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Regular Riders </p>
+        </div>
+        <div class="metric-box-body">
+            <div class="metric-box-percentage">@Html.Raw(Model.regularRiders.ToString() + " riders")</div>
+        </div>
+    </div>
+
+    <!-- Metric Box (8) -->
+    <div class="metric-box">
+        <div class="metric-box-body">
+            <p class="metric-box-title"> Daily Activity </p>
+        </div>
+        <div class="metric-box-body">
+            <div id="hourlyActivity" style="height: 200px;"></div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+<div class="split right">
+    <div class="heatMap-holder">
+        <div id="chart_div" style="height:100%; width:100%;"></div>
+        <!--<img class="heatMap-image" src="https://dev.virtualearth.net/REST/V1/Imagery/Map/Road/Bellevue%20Washington?mapLayer=TrafficFlow&mapSize=700,1000&key=Al83IEJVmD_pcR5P1uJ4EdIYbfU0afVBw0O0Ei0g4zThs__Exh84_1mhfZ9YGSih" />
+        -->
     </div>
 </div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart', 'sankey'] });
+    google.charts.setOnLoadCallback(drawCharts);
+    var durationsData = @Html.Raw(Json.Serialize(Model.durationsBasedOnMonth));
+    var passholderActivity = @Html.Raw(Json.Serialize(Model.passholderActivity));
+    var passholderProfit = @Html.Raw(Json.Serialize(Model.passholderOverages));
+    var startStationTraffic = @Html.Raw(Json.Serialize(Model.startStationTraffic));
+    var endStationTraffic = @Html.Raw(Json.Serialize(Model.endStationTraffic));
+    var averageDistanceTraveled = @Html.Raw(Json.Serialize(Model.averageDistTraveled));
+    var hourlyActivity = @Html.Raw(Json.Serialize(Model.hourlyActivity));
+    var locations = @Html.Raw(Json.Serialize(Model.stationLocations));
+
+    function drawCharts() {
+        // --------------------------------------------------------------------------------
+        // ------------------------------- 1 ----------------------------------------------
+        // --------------------------------------------------------------------------------
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Month');
+        data.addColumn('number', 'Duration');
+        for (i = 0; i < durationsData.length; i++) {
+            data.addRow([durationsData[i].data[0], durationsData[i].data[1]]);
+        }
+        var options = {
+            title: 'Bike Duration Averages (minutes)',
+            legend: 'none'
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('avgDurationMonth'));
+        chart.draw(data, options);
+
+        // --------------------------------------------------------------------------------
+        // ------------------------------- 3 ----------------------------------------------
+        // --------------------------------------------------------------------------------
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Pass');
+        data.addColumn('number', 'Times Used');
+        for (i = 0; i < passholderActivity.length; i++) {
+            data.addRow([passholderActivity[i].data[0], passholderActivity[i].data[1]]);
+        }
+        options = {
+            slices: {
+                0: { offset: 0.2 },
+                1: { offset: 0.3 },
+                2: { offset: 0.4 }
+            },
+            legend: { position: 'bottom' }
+        };
+        chart = new google.visualization.PieChart(document.getElementById('passholderActivity'));
+        chart.draw(data, options);
+
+        // --------------------------------------------------------------------------------
+        // ------------------------------- 4 ----------------------------------------------
+        // --------------------------------------------------------------------------------
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Pass');
+        data.addColumn('number', 'Profit ($)');
+        for (i = 0; i < passholderProfit.length; i++) {
+            data.addRow([passholderProfit[i].data[0], passholderProfit[i].data[1]]);
+        }
+        options = {
+            legend: { position: 'top' }
+        };
+        chart = new google.visualization.BarChart(document.getElementById('passholderProfit'));
+        chart.draw(data, options);
+
+
+        // --------------------------------------------------------------------------------
+        // ------------------------------- 5 ----------------------------------------------
+        // --------------------------------------------------------------------------------
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Station');
+        data.addColumn('number', 'Activity');
+        for (i = 0; i < startStationTraffic.length; i++) {
+            data.addRow([startStationTraffic[i].data[0], startStationTraffic[i].data[1]]);
+        }
+        options = {
+            title: 'Start Stations',
+            legend: { position: 'top' }
+        };
+        chart = new google.visualization.BarChart(document.getElementById('startStationTraffic'));
+        chart.draw(data, options);
+
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Station');
+        data.addColumn('number', 'Activity');
+        for (i = 0; i < endStationTraffic.length; i++) {
+            data.addRow([endStationTraffic[i].data[0], endStationTraffic[i].data[1]]);
+        }
+        options = {
+            title: 'End Stations',
+            legend: { position: 'top' }
+        };
+        chart = new google.visualization.BarChart(document.getElementById('endStationTraffic'));
+        chart.draw(data, options);
+
+        // --------------------------------------------------------------------------------
+        // ------------------------------- 8 ----------------------------------------------
+        // --------------------------------------------------------------------------------
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Hour');
+        data.addColumn('number', 'Activity');
+        for (i = 0; i < hourlyActivity.length; i++) {
+            data.addRow([hourlyActivity[i].data[0], hourlyActivity[i].data[1]]);
+        }
+        options = {
+            vAxis: { textPosition: 'none' },
+            legend: 'none'
+        };
+        chart = new google.visualization.LineChart(document.getElementById('hourlyActivity'));
+        chart.draw(data, options);
+    }
+</script>
+
+<!-- Map -->
+<script>
+    google.charts.load('current', { 'packages': ['map'] });
+    google.charts.setOnLoadCallback(drawMap);
+
+    function drawMap() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Lat');
+        data.addColumn('number', 'Long');
+        data.addColumn('string', 'Name');
+        for (i = 0; i < locations.length; i++) {
+            data.addRow([locations[i].data[0], locations[i].data[1], locations[i].data[2]]);
+        }
+
+        var options = {
+            showTooltip: true,
+            showInfoWindow: true
+        };
+
+        var map = new google.visualization.Map(document.getElementById('chart_div'));
+
+        map.draw(data, options);
+    };
+</script>
